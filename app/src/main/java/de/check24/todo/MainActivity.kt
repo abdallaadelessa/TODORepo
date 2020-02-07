@@ -2,32 +2,14 @@ package de.check24.todo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
-import androidx.ui.core.Text
 import androidx.ui.core.setContent
-import androidx.ui.material.MaterialTheme
-import androidx.ui.tooling.preview.Preview
+import de.check24.todo.ui.TodoApp
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme {
-                Greeting("Android")
-            }
+            TodoApp()
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview
-@Composable
-fun DefaultPreview() {
-    MaterialTheme {
-        Greeting("Android")
     }
 }
