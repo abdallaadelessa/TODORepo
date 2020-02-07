@@ -12,9 +12,10 @@ import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.layout.*
 import androidx.ui.material.*
 import androidx.ui.material.surface.Surface
-import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
+import de.check24.todo.R
 import de.check24.todo.ui.TodoApp
+import de.check24.todo.ui.utils.VectorImageButton
 
 //region Content
 
@@ -48,17 +49,22 @@ private fun MainContentPreview() {
 //region Drawer Components
 
 @Composable
+private fun AppBar(openDrawer: () -> Unit) {
+    TopAppBar(
+        title = { Text(text = "Todo Overview") },
+        navigationIcon = {
+            VectorImageButton(R.drawable.ic_drawer_menu) {
+                openDrawer()
+            }
+        }
+    )
+}
+
+@Composable
 private fun DrawerContent(content: @Composable() () -> Unit, openDrawer: () -> Unit) {
     Crossfade(TodoApp.currentScreen) { screen ->
         Column {
-            TopAppBar(
-                title = { Text(text = "Todo Overview") },
-                navigationIcon = {
-                    AppBarIcon(+imageResource(android.R.drawable.ic_menu_upload)) {
-                        openDrawer()
-                    }
-                }
-            )
+            AppBar(openDrawer)
             Surface(color = (+MaterialTheme.colors()).background) {
                 content()
             }
