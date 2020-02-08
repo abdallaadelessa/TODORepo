@@ -13,6 +13,7 @@ import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
 import de.check24.todo.R
 import de.check24.todo.pojo.Todo
+import de.check24.todo.ui.utils.VectorImageButton
 import de.check24.todo.ui.utils.imageUrl
 import java.util.*
 
@@ -31,7 +32,12 @@ fun DetailsScreen() {
     Column {
 
         TopAppBar(
-            title = { Text(text = "Todo Details") }
+            title = { Text(text = "Todo Details") },
+            navigationIcon = {
+                VectorImageButton(R.drawable.ic_back_arrow) {
+                    de.check24.todo.ui.TodoApp.navigateTo(de.check24.todo.ui.TodoApp.Screen.Overview)
+                }
+            }
         )
 
         HeightSpacer(height = 16.dp)
