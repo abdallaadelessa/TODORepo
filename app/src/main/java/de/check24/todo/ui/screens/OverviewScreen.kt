@@ -10,14 +10,14 @@ import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.DrawImage
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.border.Border
-import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
-import androidx.ui.graphics.Image
 import androidx.ui.layout.*
-import androidx.ui.material.*
+import androidx.ui.material.FloatingActionButton
+import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Card
+import androidx.ui.material.withOpacity
 import androidx.ui.res.imageResource
 import androidx.ui.text.TextStyle
 import androidx.ui.text.style.TextOverflow
@@ -27,6 +27,7 @@ import de.check24.todo.R
 import de.check24.todo.pojo.SettingsState
 import de.check24.todo.pojo.Todo
 import de.check24.todo.ui.TodoApp
+import de.check24.todo.ui.lightThemeColors
 import de.check24.todo.ui.utils.imageUrl
 
 /**
@@ -57,8 +58,10 @@ fun OverviewScreen(settingsState: SettingsState) {
         aligned(Alignment.BottomRight) {
             Padding(padding = EdgeInsets(0.dp, 12.dp, 12.dp, 12.dp)) {
                 FloatingActionButton(
-                        text = "+",
-                        color = Color.White
+                    text = "+",
+                    color = lightThemeColors.primary,
+                    textStyle = TextStyle(color = Color.White),
+                    onClick = { TodoApp.navigateTo(TodoApp.Screen.Create) }
                 )
             }
         }

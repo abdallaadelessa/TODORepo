@@ -116,23 +116,32 @@ fun CreateScreen() {
                         }
 
                         if (!hasError) {
-                            createTodo(title, description)
-                            TodoApp.navigateTo(TodoApp.Screen.Overview)
+                            TodoApp.navigateTo(
+                                TodoApp.Screen.Details(
+                                    createTodo(
+                                        title,
+                                        description
+                                    )
+                                )
+                            )
                         }
 
                     })
             }
         }
     }
+
 }
 
-private fun createTodo(title: String, description: String) {
-    DataProvider.todoList.add(
-        Todo(
-            title,
-            description
-        )
+private fun createTodo(title: String, description: String): Todo {
+    val element = Todo(
+        title,
+        description
     )
+    DataProvider.todoList.add(
+        element
+    )
+    return element
 }
 
 @Preview
