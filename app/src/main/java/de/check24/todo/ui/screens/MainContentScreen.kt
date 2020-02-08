@@ -4,7 +4,6 @@ import androidx.compose.Composable
 import androidx.compose.State
 import androidx.compose.state
 import androidx.compose.unaryPlus
-import androidx.ui.animation.Crossfade
 import androidx.ui.core.Modifier
 import androidx.ui.core.Text
 import androidx.ui.core.dp
@@ -13,7 +12,6 @@ import androidx.ui.layout.*
 import androidx.ui.material.*
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
-import de.check24.todo.DataProvider
 import de.check24.todo.R
 import de.check24.todo.ui.TodoApp
 import de.check24.todo.ui.utils.VectorImageButton
@@ -63,12 +61,10 @@ private fun AppBar(openDrawer: () -> Unit) {
 
 @Composable
 private fun DrawerContent(content: @Composable() () -> Unit, openDrawer: () -> Unit) {
-    Crossfade(TodoApp.currentScreen) { screen ->
-        Column {
-            AppBar(openDrawer)
-            Surface(color = (+MaterialTheme.colors()).background) {
-                content()
-            }
+    Column {
+        AppBar(openDrawer)
+        Surface(color = (+MaterialTheme.colors()).background) {
+            content()
         }
     }
 }
@@ -94,16 +90,6 @@ private fun DrawerMenu(currentScreen: TodoApp.Screen, closeDrawer: () -> Unit) {
             isSelected = currentScreen == TodoApp.Screen.Settings
         ) {
             TodoApp.navigateTo(TodoApp.Screen.Settings)
-            closeDrawer()
-        }
-
-        HeightSpacer(24.dp)
-
-        DrawerButton(
-            label = "Details",
-            isSelected = currentScreen == TodoApp.Screen.Details(DataProvider.todoList.first())
-        ) {
-            TodoApp.navigateTo(TodoApp.Screen.Details(DataProvider.todoList.first()))
             closeDrawer()
         }
     }

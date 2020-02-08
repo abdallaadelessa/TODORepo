@@ -5,14 +5,16 @@ import androidx.ui.animation.Crossfade
 import androidx.ui.material.DrawerState
 import androidx.ui.material.MaterialTheme
 import androidx.ui.tooling.preview.Preview
-
 import de.check24.todo.pojo.SettingsState
 import de.check24.todo.pojo.Todo
 import de.check24.todo.ui.screens.*
 
 @Model
 object TodoApp {
+
     var currentScreen: Screen = Screen.Overview
+        private set
+
     val currentDrawerState: State<DrawerState> = +state { DrawerState.Closed }
 
     fun navigateTo(destination: Screen) {
@@ -36,6 +38,10 @@ fun TodoApp(settingsState: SettingsState) {
             when (screen) {
 
                 is TodoApp.Screen.Login -> LoginAppScreen(userInfo = UserInfo())
+
+                is TodoApp.Screen.Create -> CreateScreen()
+
+                is TodoApp.Screen.Details -> DetailsScreen(screen.todo)
 
                 else -> MainContent(TodoApp.currentDrawerState) {
                     when (screen) {

@@ -6,11 +6,15 @@ import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.foundation.DrawImage
 import androidx.ui.layout.*
+import androidx.ui.material.MaterialTheme
 import androidx.ui.material.TopAppBar
+import androidx.ui.material.withOpacity
 import androidx.ui.res.imageResource
+import androidx.ui.text.font.FontWeight.Companion.Bold
 import androidx.ui.tooling.preview.Preview
 import de.check24.todo.R
 import de.check24.todo.pojo.Todo
+import de.check24.todo.ui.utils.VectorImageButton
 import de.check24.todo.ui.utils.imageUrl
 import java.util.*
 
@@ -21,16 +25,29 @@ fun DetailsScreen(todo: Todo) {
 
     Column {
         TopAppBar(
-            title = { Text(text = "Todo Details") }
+            title = { Text(text = "Todo Details") },
+            navigationIcon = {
+                VectorImageButton(R.drawable.ic_back_arrow) {
+                    de.check24.todo.ui.TodoApp.navigateTo(de.check24.todo.ui.TodoApp.Screen.Overview)
+                }
+            }
         )
 
         Container(width = 40.dp, height = 120.dp, modifier = Gravity.Center wraps ExpandedWidth) {
             DrawImage(image)
         }
 
-        Text(text = todo.title)
-        Text(text = todo.description)
-        Text(text = todo.crationtime.toString())
+        Column(modifier = Spacing(left = 10.dp, right = 10.dp)) {
+            HeightSpacer(24.dp)
+            Text(
+                text = todo.title,
+                style = (+MaterialTheme.typography()).h6
+            )
+            HeightSpacer(24.dp)
+            Text(text = todo.description)
+            HeightSpacer(24.dp)
+            Text(text = todo.crationtime.toString())
+        }
     }
 }
 
