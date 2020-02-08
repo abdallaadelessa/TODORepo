@@ -71,7 +71,7 @@ fun TodoCard(todo: Todo) {
                             HeightSpacer(height = 2.dp)
                             Align(alignment = Alignment.BottomLeft) {
                                 Text(
-                                    text = "${todo.crationtime}",
+                                    text = "${todo.creationTime}",
                                     style = ((+MaterialTheme.typography()).body2).withOpacity(0.6f)
                                 )
                             }

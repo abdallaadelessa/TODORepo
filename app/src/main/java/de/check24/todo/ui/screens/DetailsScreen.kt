@@ -59,7 +59,7 @@ fun DetailsScreen() {
         }
 
         Text {
-            todo.crationtime
+            todo.creationTime
         }
     }
 }
