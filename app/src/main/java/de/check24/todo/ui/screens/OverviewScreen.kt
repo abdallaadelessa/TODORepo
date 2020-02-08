@@ -9,14 +9,16 @@ import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.DrawImage
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.border.Border
+import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.graphics.Color
+import androidx.ui.graphics.Image
 import androidx.ui.layout.*
-import androidx.ui.material.MaterialTheme
+import androidx.ui.material.*
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Card
-import androidx.ui.material.withOpacity
 import androidx.ui.res.imageResource
+import androidx.ui.text.TextStyle
 import androidx.ui.text.style.TextOverflow
 import androidx.ui.tooling.preview.Preview
 import de.check24.todo.DataProvider
@@ -30,17 +32,31 @@ import de.check24.todo.ui.utils.imageUrl
  */
 @Composable
 fun OverviewScreen() {
-    val todoList = DataProvider.todoList
-    Column(modifier = Expanded) {
-        VerticalScroller {
-            Column(modifier = Spacing(16.dp)) {
-                todoList.forEach {
-                    TodoCard(it)
-                    HeightSpacer(height = 16.dp)
+    Stack {
+        aligned(Alignment.TopCenter) {
+            val todoList = DataProvider.todoList
+            Column(modifier = Expanded) {
+                VerticalScroller {
+                    Column(modifier = Spacing(16.dp)) {
+                        todoList.forEach {
+                            TodoCard(it)
+                            HeightSpacer(height = 16.dp)
+                        }
+                    }
                 }
             }
         }
+
+        aligned(Alignment.BottomRight) {
+            Padding(padding = EdgeInsets(0.dp, 12.dp, 12.dp, 12.dp)) {
+                FloatingActionButton(
+                        text = "+",
+                        color = Color.White
+                )
+            }
+        }
     }
+
 }
 
 @Composable
@@ -82,6 +98,7 @@ fun TodoCard(todo: Todo) {
         }
     }
 }
+
 
 @Preview
 @Composable
