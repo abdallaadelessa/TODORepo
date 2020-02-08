@@ -13,6 +13,7 @@ import androidx.ui.material.*
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
 import de.check24.todo.R
+import de.check24.todo.pojo.SettingsState
 import de.check24.todo.ui.TodoApp
 import de.check24.todo.ui.utils.VectorImageButton
 
@@ -39,7 +40,7 @@ fun MainContent(drawerState: State<DrawerState>, content: @Composable() () -> Un
 @Composable
 private fun MainContentPreview() {
     MainContent(+state { DrawerState.Closed }) {
-        OverviewScreen()
+        OverviewScreen(SettingsState())
     }
 }
 

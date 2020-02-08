@@ -3,6 +3,7 @@ package de.check24.todo.ui.screens
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
 import androidx.ui.core.Alignment
+import androidx.ui.core.Dp
 import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.foundation.Clickable
@@ -23,6 +24,7 @@ import androidx.ui.text.style.TextOverflow
 import androidx.ui.tooling.preview.Preview
 import de.check24.todo.DataProvider
 import de.check24.todo.R
+import de.check24.todo.pojo.SettingsState
 import de.check24.todo.pojo.Todo
 import de.check24.todo.ui.TodoApp
 import de.check24.todo.ui.lightThemeColors
@@ -32,7 +34,12 @@ import de.check24.todo.ui.utils.imageUrl
  * @author Created by Abdullah Essa on 07.02.20.
  */
 @Composable
-fun OverviewScreen() {
+fun OverviewScreen(settingsState: SettingsState) {
+    val cornerRadius = if (settingsState.roundCorners) {
+        8.dp
+    } else {
+        0.dp
+    }
     Stack {
         aligned(Alignment.TopCenter) {
             val todoList = DataProvider.todoList
@@ -40,7 +47,7 @@ fun OverviewScreen() {
                 VerticalScroller {
                     Column(modifier = Spacing(16.dp)) {
                         todoList.forEach {
-                            TodoCard(it)
+                            TodoCard(it, cornerRadius)
                             HeightSpacer(height = 16.dp)
                         }
                     }
@@ -63,8 +70,8 @@ fun OverviewScreen() {
 }
 
 @Composable
-fun TodoCard(todo: Todo) {
-    Card(shape = RoundedCornerShape(8.dp), border = Border(Color.Gray, 0.2.dp)) {
+fun TodoCard(todo: Todo, cornerRadius: Dp) {
+    Card(shape = RoundedCornerShape(cornerRadius), border = Border(Color.Gray, 0.2.dp)) {
         Ripple(bounded = true) {
             Clickable(onClick = {
                 TodoApp.navigateTo(TodoApp.Screen.Details(todo))
@@ -106,5 +113,5 @@ fun TodoCard(todo: Todo) {
 @Preview
 @Composable
 private fun OverviewScreenPreview() {
-    OverviewScreen()
+    OverviewScreen(SettingsState())
 }

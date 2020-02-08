@@ -13,5 +13,7 @@ data class Todo(
 
 @Model
 class SettingsState(
-    var darkMode: Boolean = false
+    var darkMode: Boolean = false,
+    var roundCorners: Boolean = true
 )
+

@@ -13,6 +13,7 @@ import de.check24.todo.ui.TodoApp
 class MainActivity : AppCompatActivity() {
     companion object {
         const val SETTING_DARK_MODE = "darkModeSettingKey"
+        const val SETTING_ROUND_CORNERS = "roundCornersSettingKey"
     }
 
     lateinit var sharedPref: SharedPreferences
