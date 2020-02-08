@@ -6,6 +6,7 @@ import androidx.ui.material.DrawerState
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
+import de.check24.todo.pojo.SettingsState
 import de.check24.todo.ui.screens.*
 
 @Model
