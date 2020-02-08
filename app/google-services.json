@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "960030154430",
+    "firebase_url": "https://todo-98992.firebaseio.com",
+    "project_id": "todo-98992",
+    "storage_bucket": "todo-98992.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960030154430:android:bea438e09bcdb8046508ef",
+        "android_client_info": {
+          "package_name": "de.check24.todo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960030154430-00rrneb0p0vmrpdui68gsqlkbfg896or.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.check24.todo",
+            "certificate_hash": "4ae97f5269ae175a5ff849ebd8787e6cbf636170"
+          }
+        },
+        {
+          "client_id": "960030154430-etgoddtik4jqobe4eno5ad6a4ahn042h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgoTKe7j4NaesGisfjOAsZ0N-bkCUJxPI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960030154430-etgoddtik4jqobe4eno5ad6a4ahn042h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
