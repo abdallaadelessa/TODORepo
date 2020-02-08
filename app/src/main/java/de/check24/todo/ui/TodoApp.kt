@@ -45,7 +45,7 @@ fun TodoApp(settingsState: SettingsState) {
 
                 else -> MainContent(TodoApp.currentDrawerState) {
                     when (screen) {
-                        is TodoApp.Screen.Overview -> OverviewScreen()
+                        is TodoApp.Screen.Overview -> OverviewScreen(settingsState)
                         is TodoApp.Screen.Settings -> SettingsScreen(settingsState)
                     }
                 }
