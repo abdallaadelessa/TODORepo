@@ -5,6 +5,7 @@ import androidx.ui.animation.Crossfade
 import androidx.ui.material.DrawerState
 import androidx.ui.material.MaterialTheme
 import androidx.ui.tooling.preview.Preview
+
 import de.check24.todo.pojo.SettingsState
 import de.check24.todo.pojo.Todo
 import de.check24.todo.ui.screens.*
@@ -34,7 +35,7 @@ fun TodoApp(settingsState: SettingsState) {
         Crossfade(TodoApp.currentScreen) { screen ->
             when (screen) {
 
-                is TodoApp.Screen.Login -> LoginScreen()
+                is TodoApp.Screen.Login -> LoginAppScreen(userInfo = UserInfo())
 
                 else -> MainContent(TodoApp.currentDrawerState) {
                     when (screen) {
