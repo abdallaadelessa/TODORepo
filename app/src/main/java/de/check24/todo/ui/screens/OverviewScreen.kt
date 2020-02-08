@@ -2,17 +2,14 @@ package de.check24.todo.ui.screens
 
 import androidx.compose.Composable
 import androidx.compose.unaryPlus
-import androidx.ui.core.Opacity
+import androidx.ui.core.Alignment
 import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.DrawImage
 import androidx.ui.foundation.VerticalScroller
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
-import androidx.ui.graphics.Color
 import androidx.ui.layout.*
-import androidx.ui.material.Divider
-import androidx.ui.material.FloatingActionButton
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
 import androidx.ui.material.surface.Card
@@ -21,8 +18,10 @@ import androidx.ui.res.imageResource
 import androidx.ui.text.style.TextOverflow
 import androidx.ui.tooling.preview.Preview
 import de.check24.todo.DataProvider
+import de.check24.todo.R
 import de.check24.todo.pojo.Todo
 import de.check24.todo.ui.TodoApp
+import de.check24.todo.ui.utils.imageUrl
 
 /**
  * @author Created by Abdullah Essa on 07.02.20.
@@ -46,15 +45,14 @@ fun OverviewScreen() {
 
 @Composable
 fun TodoCard(todo: Todo) {
-    Card(shape = RoundedCornerShape(4.dp)) {
+    Card(shape = RoundedCornerShape(8.dp)) {
         Ripple(bounded = true) {
             Clickable(onClick = {
-                TodoApp.navigateTo(TodoApp.Screen.Details)
+                TodoApp.navigateTo(TodoApp.Screen.Details(todo))
             }) {
                 Container(modifier = Height(280.dp)) {
                     Column(modifier = Expanded) {
-                        //val image = todo.image ?: +imageResource(R.drawable.placeholder_4_3)
-                        val image =  +imageResource(android.R.drawable.notification_bg_low)
+                        val image = +imageUrl(todo.imageUrl) ?: +imageResource(R.drawable.header)
                         Container(modifier = Height(100.dp) wraps Expanded) {
                             DrawImage(image)
                         }
@@ -65,14 +63,18 @@ fun TodoCard(todo: Todo) {
                                 maxLines = 2,
                                 overflow = TextOverflow.Ellipsis
                             )
+                            HeightSpacer(height = 4.dp)
                             Text(
                                 text = todo.description,
-                                style = ((+MaterialTheme.typography()).body2).withOpacity(0.87f)
+                                style = ((+MaterialTheme.typography()).body1).withOpacity(0.87f)
                             )
-                            Text(
-                                text = "${todo.crationtime}",
-                                style = ((+MaterialTheme.typography()).body2).withOpacity(0.6f)
-                            )
+                            HeightSpacer(height = 2.dp)
+                            Align(alignment = Alignment.BottomLeft) {
+                                Text(
+                                    text = "${todo.crationtime}",
+                                    style = ((+MaterialTheme.typography()).body2).withOpacity(0.6f)
+                                )
+                            }
                         }
                     }
                 }

@@ -10,7 +10,14 @@ object DataProvider {
 
     val todoList = mutableListOf<Todo>().apply {
         repeat(20) {
-            add(Todo("Todo$it", "Description", "https://miro.medium.com/max/1024/1*Er24qsvJdqLofK-sK0QzpA.jpeg", Date()))
+            add(
+                Todo(
+                    "Todo${it + 1}",
+                    "Description for my todo${it + 1}\nDescription for my todo${it + 1}\nDescription for my todo${it + 1}",
+                    "https://miro.medium.com/max/1024/1*Er24qsvJdqLofK-sK0QzpA.jpeg",
+                    Date()
+                )
+            )
         }
     }
 

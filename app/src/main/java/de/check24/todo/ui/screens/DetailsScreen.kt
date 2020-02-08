@@ -1,27 +1,19 @@
 package de.check24.todo.ui.screens
 
-import androidx.compose.*
-import androidx.core.graphics.drawable.toBitmap
+import androidx.compose.Composable
+import androidx.compose.unaryPlus
 import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.foundation.DrawImage
-import androidx.ui.graphics.Image
-import androidx.ui.layout.*
-import androidx.ui.material.Button
-import androidx.ui.material.TextButtonStyle
+import androidx.ui.layout.Column
+import androidx.ui.layout.Container
+import androidx.ui.layout.HeightSpacer
 import androidx.ui.material.TopAppBar
 import androidx.ui.res.imageResource
 import androidx.ui.tooling.preview.Preview
-import coil.Coil
-import coil.api.newGetBuilder
-import coil.request.GetRequest
 import de.check24.todo.R
 import de.check24.todo.pojo.Todo
-import de.check24.todo.ui.TodoApp
-import de.check24.todo.util.RemoteImage
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import de.check24.todo.ui.utils.imageUrl
 import java.util.*
 
 @Composable
@@ -34,7 +26,7 @@ fun DetailsScreen() {
         Date()
     )
 
-    val image = +image(todo.imageUrl) ?: +imageResource(R.drawable.header)
+    val image = +imageUrl(todo.imageUrl) ?: +imageResource(R.drawable.header)
 
     Column {
 
@@ -64,44 +56,6 @@ fun DetailsScreen() {
             todo.crationtime
         }
     }
-}
-
-
-/**
- * A simple [image] effect, which loads [data] with the default options.
- */
-@CheckResult(suggest = "+")
-fun image(data: Any) = effectOf<Image?> {
-    // Positionally memoize the request creation so
-    // it will only be recreated if data changes.
-    val request = +memo(data) {
-        Coil.loader().newGetBuilder().data(data).build()
-    }
-    +image(request)
-}
-
-/**
- * A configurable [image] effect, which accepts a [request] value object.
- */
-@CheckResult(suggest = "+")
-fun image(request: GetRequest) = effectOf<Image?> {
-    val image = +state<Image?> { null }
-
-    // Execute the following code whenever the request changes.
-    +onCommit(request) {
-        val job = CoroutineScope(Dispatchers.Main.immediate).launch {
-            // Start loading the image and await the result.
-            val drawable = Coil.loader().get(request)
-            image.value = RemoteImage(drawable.toBitmap())
-        }
-
-        // Cancel the request if the input to onCommit changes or
-        // the Composition is removed from the composition tree.
-        onDispose { job.cancel() }
-    }
-
-    // Emit a null Image to start with.
-    image.value
 }
 
 @Preview

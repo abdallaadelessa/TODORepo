@@ -13,6 +13,7 @@ import androidx.ui.layout.*
 import androidx.ui.material.*
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
+import de.check24.todo.DataProvider
 import de.check24.todo.R
 import de.check24.todo.ui.TodoApp
 import de.check24.todo.ui.utils.VectorImageButton
@@ -100,9 +101,9 @@ private fun DrawerMenu(currentScreen: TodoApp.Screen, closeDrawer: () -> Unit) {
 
         DrawerButton(
             label = "Details",
-            isSelected = currentScreen == TodoApp.Screen.Details
+            isSelected = currentScreen == TodoApp.Screen.Details(DataProvider.todoList.first())
         ) {
-            TodoApp.navigateTo(TodoApp.Screen.Details)
+            TodoApp.navigateTo(TodoApp.Screen.Details(DataProvider.todoList.first()))
             closeDrawer()
         }
     }
