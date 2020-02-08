@@ -2,8 +2,10 @@ package de.check24.todo.ui
 
 import androidx.compose.*
 import androidx.ui.animation.Crossfade
+import androidx.ui.layout.Expanded
 import androidx.ui.material.DrawerState
 import androidx.ui.material.MaterialTheme
+import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
 import de.check24.todo.pojo.SettingsState
 import de.check24.todo.pojo.Todo
@@ -34,14 +36,15 @@ object TodoApp {
 @Composable
 fun TodoApp(settingsState: SettingsState) {
     MaterialTheme(colors = getColorPalette(settingsState.darkMode)) {
+
         Crossfade(TodoApp.currentScreen) { screen ->
             when (screen) {
 
-                is TodoApp.Screen.Login -> LoginAppScreen(userInfo = UserInfo())
+                is TodoApp.Screen.Login -> wrapInsideSurface { LoginAppScreen(userInfo = UserInfo()) }
 
-                is TodoApp.Screen.Create -> CreateScreen()
+                is TodoApp.Screen.Create -> wrapInsideSurface { CreateScreen() }
 
-                is TodoApp.Screen.Details -> DetailsScreen(screen.todo)
+                is TodoApp.Screen.Details -> wrapInsideSurface { DetailsScreen(screen.todo) }
 
                 else -> MainContent(TodoApp.currentDrawerState) {
                     when (screen) {
@@ -53,6 +56,13 @@ fun TodoApp(settingsState: SettingsState) {
                 }
             }
         }
+
+    }
+}
+
+private fun wrapInsideSurface(content: @Composable() () -> Unit) {
+    Surface(color = (+MaterialTheme.colors()).background, modifier = Expanded) {
+        content()
     }
 }
 
