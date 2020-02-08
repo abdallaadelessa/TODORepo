@@ -48,3 +48,12 @@ val darkThemeColors = ColorPalette(
     onBackground = Color.White,
     onSurface = Color.White
 )
+
+
+fun getColorPalette(darkMode: Boolean): ColorPalette {
+    return if (darkMode) {
+        darkThemeColors
+    } else {
+        lightThemeColors
+    }
+}

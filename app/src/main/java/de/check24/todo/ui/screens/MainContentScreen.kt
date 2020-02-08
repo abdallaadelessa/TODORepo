@@ -85,6 +85,16 @@ private fun DrawerMenu(currentScreen: TodoApp.Screen, closeDrawer: () -> Unit) {
             TodoApp.navigateTo(TodoApp.Screen.Overview)
             closeDrawer()
         }
+
+        HeightSpacer(24.dp)
+
+        DrawerButton(
+            label = "Settings",
+            isSelected = currentScreen == TodoApp.Screen.Settings
+        ) {
+            TodoApp.navigateTo(TodoApp.Screen.Settings)
+            closeDrawer()
+        }
     }
 }
 
