@@ -21,7 +21,7 @@ object TodoApp {
     sealed class Screen {
         object Overview : Screen()
         object Create : Screen()
-        class Details(todo: Todo) : Screen()
+        class Details(val todo: Todo) : Screen()
         object Profile : Screen()
         object Settings : Screen()
         object Login : Screen()
@@ -40,7 +40,7 @@ fun TodoApp(settingsState: SettingsState) {
                     when (screen) {
                         is TodoApp.Screen.Overview -> OverviewScreen()
                         is TodoApp.Screen.Create -> CreateScreen()
-                        is TodoApp.Screen.Details -> DetailsScreen()
+                        is TodoApp.Screen.Details -> DetailsScreen(screen.todo)
                         is TodoApp.Screen.Settings -> SettingsScreen(settingsState)
                     }
                 }
