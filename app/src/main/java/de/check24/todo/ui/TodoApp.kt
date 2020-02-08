@@ -5,9 +5,7 @@ import androidx.ui.animation.Crossfade
 import androidx.ui.material.DrawerState
 import androidx.ui.material.MaterialTheme
 import androidx.ui.tooling.preview.Preview
-import de.check24.todo.ui.screens.LoginScreen
-import de.check24.todo.ui.screens.MainContent
-import de.check24.todo.ui.screens.OverviewScreen
+import de.check24.todo.ui.screens.*
 
 @Model
 object TodoApp {
@@ -20,6 +18,7 @@ object TodoApp {
 
     sealed class Screen {
         object Overview : Screen()
+        object Create : Screen()
         object Details : Screen()
         object Profile : Screen()
         object Settings : Screen()
@@ -38,7 +37,8 @@ fun TodoApp() {
                 else -> MainContent(TodoApp.currentDrawerState) {
                     when (screen) {
                         is TodoApp.Screen.Overview -> OverviewScreen()
-                        //TODO
+                        is TodoApp.Screen.Create -> CreateScreen()
+                        is TodoApp.Screen.Details -> DetailsScreen()
                     }
                 }
 
