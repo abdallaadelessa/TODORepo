@@ -46,7 +46,7 @@ fun DetailsScreen(todo: Todo) {
             HeightSpacer(24.dp)
             Text(text = todo.description)
             HeightSpacer(24.dp)
-            Text(text = todo.crationtime.toString())
+            Text(text = todo.creationTime.toString())
         }
     }
 }

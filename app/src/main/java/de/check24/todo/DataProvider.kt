@@ -13,9 +13,7 @@ object DataProvider {
             add(
                 Todo(
                     "Todo${it + 1}",
-                    "Description for my todo${it + 1}\nDescription for my todo${it + 1}\nDescription for my todo${it + 1}",
-                    "https://miro.medium.com/max/1024/1*Er24qsvJdqLofK-sK0QzpA.jpeg",
-                    Date()
+                    "Description for my todo${it + 1}\nDescription for my todo${it + 1}\nDescription for my todo${it + 1}"
                 )
             )
         }
