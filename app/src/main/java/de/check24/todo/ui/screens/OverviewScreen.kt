@@ -8,7 +8,9 @@ import androidx.ui.core.dp
 import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.DrawImage
 import androidx.ui.foundation.VerticalScroller
+import androidx.ui.foundation.shape.border.Border
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
+import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.ripple.Ripple
@@ -29,14 +31,12 @@ import de.check24.todo.ui.utils.imageUrl
 @Composable
 fun OverviewScreen() {
     val todoList = DataProvider.todoList
-    Padding(padding = 16.dp) {
-        Column(modifier = Expanded) {
-            VerticalScroller {
-                Column {
-                    todoList.forEach {
-                        TodoCard(it)
-                        HeightSpacer(height = 8.dp)
-                    }
+    Column(modifier = Expanded) {
+        VerticalScroller {
+            Column(modifier = Spacing(16.dp)) {
+                todoList.forEach {
+                    TodoCard(it)
+                    HeightSpacer(height = 16.dp)
                 }
             }
         }
@@ -45,7 +45,7 @@ fun OverviewScreen() {
 
 @Composable
 fun TodoCard(todo: Todo) {
-    Card(shape = RoundedCornerShape(8.dp)) {
+    Card(shape = RoundedCornerShape(8.dp), border = Border(Color.Gray, 0.2.dp)) {
         Ripple(bounded = true) {
             Clickable(onClick = {
                 TodoApp.navigateTo(TodoApp.Screen.Details(todo))
