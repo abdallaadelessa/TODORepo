@@ -44,7 +44,6 @@ fun TodoApp(settingsState: SettingsState) {
                         is TodoApp.Screen.Settings -> SettingsScreen(settingsState)
                     }
                 }
-
             }
         }
     }
